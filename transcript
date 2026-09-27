@@ -1,0 +1,67 @@
+# //  Questa Sim-64
+# //  Version 10.2c Unknown Platform Jul 19 2013
+# //
+# //  Copyright 1991-2013 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# vsim -voptargs=+acc work.tb_falcon_samplerZ 
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_samplerZ(fast)".
+# 
+# ** Note: (vopt-143) Recognized 1 FSM in module "fpu_divider(fast)".
+# 
+# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_ber_exp(fast)".
+# 
+# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_ccs_2p_gen(fast)".
+# 
+# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_approx_exp(fast)".
+# 
+# Loading sv_std.std
+# Loading work.tb_falcon_samplerZ_sv_unit(fast)
+# Loading work.tb_falcon_samplerZ(fast)
+# Loading work.falcon_samplerZ_sv_unit(fast)
+# Loading work.falcon_samplerZ(fast)
+# Loading work.falcon_ber_exp_sv_unit(fast)
+# Loading work.falcon_ber_exp(fast)
+# Loading work.radix_4_16d(fast)
+# Loading work.falcon_approx_exp_sv_unit(fast)
+# Loading work.falcon_approx_exp(fast)
+# Loading work.falcon_base_sampler_sv_unit(fast)
+# Loading work.falcon_base_sampler(fast)
+# Loading work.falcon_ccs_2p_gen_sv_unit(fast)
+# Loading work.falcon_ccs_2p_gen(fast)
+# Loading work.fpu_divider_sv_unit(fast)
+# Loading work.fpu_divider(fast)
+run -all
+# =================================================
+#    VERIFY DU 16 TEST VECTOR FALCON SAMPLERZ      
+# =================================================
+# [PASS] Test 1 | Output z = -92 (Expected: -92)
+# [PASS] Test 2 | Output z = -8 (Expected: -8)
+# [PASS] Test 3 | Output z = -20 (Expected: -20)
+# [FAIL] Test 4 | Output z = -14 (Expected: -12)
+# [FAIL] Test 5 | Output z = 6 (Expected: 8)
+# [PASS] Test 6 | Output z = -30 (Expected: -30)
+# [PASS] Test 7 | Output z = -10 (Expected: -10)
+# [PASS] Test 8 | Output z = -41 (Expected: -41)
+# [FAIL] Test 9 | Output z = -60 (Expected: -61)
+# [PASS] Test 10 | Output z = -46 (Expected: -46)
+# [PASS] Test 11 | Output z = -34 (Expected: -34)
+# [FAIL] Test 12 | Output z = -46 (Expected: -44)
+# [PASS] Test 13 | Output z = -23 (Expected: -23)
+# [PASS] Test 14 | Output z = -40 (Expected: -40)
+# [PASS] Test 15 | Output z = -22 (Expected: -22)
+# [PASS] Test 16 | Output z = -50 (Expected: -50)
+# 
+# =================================================
+#  KET QUA TESTBENCH: PASS = 12 / 16 | FAIL = 4
+# =================================================
+# ** Note: $finish    : D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv(561)
+#    Time: 61125 ns  Iteration: 1  Instance: /tb_falcon_samplerZ
+# 1
+# Break in Module tb_falcon_samplerZ at D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv line 561
