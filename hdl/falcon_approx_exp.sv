@@ -21,13 +21,13 @@
 	`include "falcon_header.svh"
 
  	module falcon_approx_exp (
-  	input   clk,
-    input   rst_n,
-    input   start,
+  	input   														clk,
+    input   														rst_n,
+    input   														start,
     input   logic [`FALCON_X - 1 : 0]   x,      // Q1.63
     input   logic [`FALCON_CCS - 1 : 0] ccs,    // Q1.63
     output  logic [`FALCON_Y - 1 : 0]   y,			// Q1.63
-    output  logic done
+    output  logic 											done
 	);
 
  	localparam logic [`FALCON_CCS - 1 : 0] C [`FALCON_C_QUANTITY] = '{

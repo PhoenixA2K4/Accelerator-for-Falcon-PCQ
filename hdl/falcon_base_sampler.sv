@@ -21,10 +21,10 @@
 `include "falcon_header.svh"
 
 module falcon_base_sampler (
-    input   clk,
-    input   rst_n,
+    input   																									clk,
+    input   																									rst_n,
     input   logic [`FALCON_UNIFORM_BITS_BASE_SAMPLER - 1 : 0] unif_base,
-    output  logic [4 : 0] z0
+    output  logic [4 : 0] 																		z0
 );
     
     logic [4 : 0] z0_tmp;
@@ -36,6 +36,16 @@ module falcon_base_sampler (
         72'd198, 72'd1
     };
 
+    /******************************************************************/
+   	/******************************************************************/
+   	/**Require:
+			*Ensure: Aninteger z0 ∈ {0,...,18}
+			*	1: u ← UniformBits(72) 
+			*	2: z0 ← 0
+			*	3: for i = 0,...,17 do
+			*	4: | z0 ← z0 + [[u <RCDT[i]]] 
+			*	5: return z0
+			**/
     always_comb begin
         z0_tmp = '0;
         for(int i = 0; i < 18; i++) begin
@@ -43,6 +53,11 @@ module falcon_base_sampler (
         end
     end
 
+    /******************************************************************/
+   	/******************************************************************/
+   	/**
+   	 * Delay 
+   	 * */
     always_ff @(posedge clk) begin
         if(!rst_n)
             z0 <= '0;
