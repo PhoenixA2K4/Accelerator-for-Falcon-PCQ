@@ -21,24 +21,23 @@
  `include "falcon_header.svh"
 
  module falcon_ccs_2p_gen (
-    input         clk,
-    input         rst_n,
-    input         start,
-    output  logic done,
-    //input   logic [`FALCON_STAND - 1 : 0] o_min,    // phi minimum in FPU Type
-    input   logic [`FPU_STAND - 1 : 0] o_dot,        // FPU
-    output  logic [`FALCON_CCS - 1 : 0]   ccs,        // fixed point Q1.63
-    output  logic [`FALCON_SQR_P - 1 : 0] o_sqr      // fixed poinr Q0.64
+    input         												clk,
+    input         												rst_n,
+    input         												start,
+    output  logic 												done,
+    input   logic [`FPU_STAND - 1 : 0] 		o_dot,        	// FPU
+    output  logic [`FALCON_CCS - 1 : 0]   ccs,        		// fixed point Q1.63
+    output  logic [`FALCON_SQR_P - 1 : 0] o_sqr      			// fixed point Q0.64
 );
 
-      localparam o_min     = 64'h3FF47201BF2577E7;    // FPU for phi min
-      localparam o_min_sqr = 64'h4E63DE84E5EE3645;    // Q0.64 (fixed point) for 1 / (2 * o_min^2)
-      localparam o_max_sqr = 64'h269F178307778416;   // Q0.64 (fixed point) for 1 / (2 * o_max^2)
+      localparam o_min     = 64'h3FF47201BF2577E7;    		// FPU for phi min
+      localparam o_min_sqr = 64'h4E63DE84E5EE3645;    		// Q0.64 (fixed point) for 1 / (2 * o_min^2)
+      localparam o_max_sqr = 64'h269F178307778416;   			// Q0.64 (fixed point) for 1 / (2 * o_max^2)
 
 
-      logic [`MULTI_N - 1 : 0]    a;
-      logic [`MULTI_N - 1 : 0]    b;
-      logic [2 * `MULTI_N - 1 : 0] p;
+      logic 		[`MULTI_N - 1 : 0]  a;
+      logic 		[`MULTI_N - 1 : 0]  b;
+      logic [2 * `MULTI_N - 1 : 0] 	p;
 
       logic div_en;
       logic div_valid;

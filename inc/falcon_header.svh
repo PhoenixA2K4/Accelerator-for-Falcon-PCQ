@@ -57,7 +57,7 @@
 // SamplerZ
 `define FALCON_SQR_P                    64
 `define FALCON_SPLERZ                   64
-`define FALCON_UNIFORM_BITS_SAMPLERZ    88
+`define FALCON_UNIFORM_BITS_SAMPLERZ    8
 `define FALCON_Z                        16
 
 

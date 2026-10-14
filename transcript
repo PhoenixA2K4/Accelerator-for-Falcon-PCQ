@@ -9,59 +9,119 @@
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
 # vsim -voptargs=+acc work.tb_falcon_samplerZ 
-# ** Note: (vsim-3812) Design is being optimized...
-# 
-# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_samplerZ(fast)".
-# 
-# ** Note: (vopt-143) Recognized 1 FSM in module "fpu_divider(fast)".
-# 
-# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_ber_exp(fast)".
-# 
-# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_ccs_2p_gen(fast)".
-# 
-# ** Note: (vopt-143) Recognized 1 FSM in module "falcon_approx_exp(fast)".
-# 
 # Loading sv_std.std
 # Loading work.tb_falcon_samplerZ_sv_unit(fast)
 # Loading work.tb_falcon_samplerZ(fast)
 # Loading work.falcon_samplerZ_sv_unit(fast)
 # Loading work.falcon_samplerZ(fast)
-# Loading work.falcon_ber_exp_sv_unit(fast)
-# Loading work.falcon_ber_exp(fast)
-# Loading work.radix_4_16d(fast)
-# Loading work.falcon_approx_exp_sv_unit(fast)
-# Loading work.falcon_approx_exp(fast)
+# Loading work.falcon_sampler_sv_unit(fast)
+# Loading work.falcon_sampler(fast)
 # Loading work.falcon_base_sampler_sv_unit(fast)
 # Loading work.falcon_base_sampler(fast)
 # Loading work.falcon_ccs_2p_gen_sv_unit(fast)
 # Loading work.falcon_ccs_2p_gen(fast)
+# Loading work.radix_4_16d(fast)
 # Loading work.fpu_divider_sv_unit(fast)
 # Loading work.fpu_divider(fast)
+# Loading work.falcon_gen_x_sv_unit(fast)
+# Loading work.falcon_gen_x(fast)
+# Loading work.falcon_ber_exp_sv_unit(fast)
+# Loading work.falcon_ber_exp(fast)
+# Loading work.falcon_approx_exp_sv_unit(fast)
+# Loading work.falcon_approx_exp(fast)
+# Loading work.falcon_sampler_controller_sv_unit(fast)
+# Loading work.falcon_sampler_controller(fast)
+add wave -position insertpoint sim:/tb_falcon_samplerZ/dut/*
 run -all
 # =================================================
 #    VERIFY DU 16 TEST VECTOR FALCON SAMPLERZ      
 # =================================================
-# [PASS] Test 1 | Output z = -92 (Expected: -92)
-# [PASS] Test 2 | Output z = -8 (Expected: -8)
-# [PASS] Test 3 | Output z = -20 (Expected: -20)
-# [FAIL] Test 4 | Output z = -14 (Expected: -12)
-# [FAIL] Test 5 | Output z = 6 (Expected: 8)
-# [PASS] Test 6 | Output z = -30 (Expected: -30)
-# [PASS] Test 7 | Output z = -10 (Expected: -10)
-# [PASS] Test 8 | Output z = -41 (Expected: -41)
-# [FAIL] Test 9 | Output z = -60 (Expected: -61)
-# [PASS] Test 10 | Output z = -46 (Expected: -46)
-# [PASS] Test 11 | Output z = -34 (Expected: -34)
-# [FAIL] Test 12 | Output z = -46 (Expected: -44)
-# [PASS] Test 13 | Output z = -23 (Expected: -23)
-# [PASS] Test 14 | Output z = -40 (Expected: -40)
-# [PASS] Test 15 | Output z = -22 (Expected: -22)
-# [PASS] Test 16 | Output z = -50 (Expected: -50)
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = ea
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 6c
+# [PASS] Test 1 z=-92, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = c2
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = b3
+# [PASS] Test 2 z=-8, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = d6
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 5d
+# [PASS] Test 3 z=-20, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = dc
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = b4
+#   [PRNG] sampler req #3, bytes [22..31]
+#   [PRNG] BerExp req #3, byte [32] = a7
+#   [PRNG] sampler req #4, bytes [33..42]
+#   [PRNG] BerExp req #4, byte [43] = 0b
+# [PASS] Test 4 z=-12, sampler_req=4 ber_req=4, bytes=44
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = ae
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 7c
+#   [PRNG] sampler req #3, bytes [22..31]
+#   [PRNG] BerExp req #3, byte [32] = 55
+# [PASS] Test 5 z=8, sampler_req=3 ber_req=3, bytes=33
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 77
+# [PASS] Test 6 z=-30, sampler_req=1 ber_req=1, bytes=11
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 32
+# [PASS] Test 7 z=-10, sampler_req=1 ber_req=1, bytes=11
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 14
+# [PASS] Test 8 z=-41, sampler_req=1 ber_req=1, bytes=11
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 8e
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 58
+#   [PRNG] BerExp req #3, byte [22] = 7c
+# [PASS] Test 9 z=-61, sampler_req=2 ber_req=3, bytes=23
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = c4
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 0a
+# [PASS] Test 10 z=-46, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = e1
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 0a
+# [PASS] Test 11 z=-34, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = ab
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = da
+#   [PRNG] sampler req #3, bytes [22..31]
+#   [PRNG] BerExp req #3, byte [32] = a8
+#   [PRNG] sampler req #4, bytes [33..42]
+#   [PRNG] BerExp req #4, byte [43] = 9e
+# [PASS] Test 12 z=-44, sampler_req=4 ber_req=4, bytes=44
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 26
+# [PASS] Test 13 z=-23, sampler_req=1 ber_req=1, bytes=11
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = 59
+# [PASS] Test 14 z=-40, sampler_req=1 ber_req=1, bytes=11
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = c1
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 03
+# [PASS] Test 15 z=-22, sampler_req=2 ber_req=2, bytes=22
+#   [PRNG] sampler req #1, bytes [0..9]
+#   [PRNG] BerExp req #1, byte [10] = fc
+#   [PRNG] sampler req #2, bytes [11..20]
+#   [PRNG] BerExp req #2, byte [21] = 5b
+# [PASS] Test 16 z=-50, sampler_req=2 ber_req=2, bytes=22
 # 
 # =================================================
-#  KET QUA TESTBENCH: PASS = 12 / 16 | FAIL = 4
+#  KET QUA TESTBENCH: PASS = 16 / 16 | FAIL = 0
 # =================================================
-# ** Note: $finish    : D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv(561)
-#    Time: 61125 ns  Iteration: 1  Instance: /tb_falcon_samplerZ
+# ** Note: $finish    : D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv(547)
+#    Time: 102830 ns  Iteration: 1  Instance: /tb_falcon_samplerZ
 # 1
-# Break in Module tb_falcon_samplerZ at D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv line 561
+# Break in Module tb_falcon_samplerZ at D:/SV_CODE/FN_DSA/tb/tb_falcon_samplerZ.sv line 547

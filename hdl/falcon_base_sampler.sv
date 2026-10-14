@@ -23,7 +23,7 @@
 module falcon_base_sampler (
     input   clk,
     input   rst_n,
-    input   logic [`FALCON_UNIFORM_BITS_BASE_SAMPLER - 1 : 0] uniform_bits,
+    input   logic [`FALCON_UNIFORM_BITS_BASE_SAMPLER - 1 : 0] unif_base,
     output  logic [4 : 0] z0
 );
     
@@ -38,12 +38,10 @@ module falcon_base_sampler (
 
     always_comb begin
         z0_tmp = '0;
-        
         for(int i = 0; i < 18; i++) begin
-            z0_tmp = z0_tmp + {4'd0, (uniform_bits < RCDT[i])};
+            z0_tmp = z0_tmp + {4'd0, (unif_base < RCDT[i])};
         end
     end
-
 
     always_ff @(posedge clk) begin
         if(!rst_n)
