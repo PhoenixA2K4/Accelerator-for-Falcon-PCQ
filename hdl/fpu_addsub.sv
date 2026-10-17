@@ -36,33 +36,40 @@ module fpu_addsub (
     // =========================================================
 
     // Shift-right with sticky-bit jam
-    function automatic logic [55:0] shr_jam56 (
-        input logic [55:0] in,
-        input logic [10:0] shamt
-    );
-        logic [55:0] tmp;
-        logic        sticky;
-        integer      i;
-        begin
-            if (shamt == 0) begin
-                shr_jam56 = in;
-            end
-            else if (shamt >= 56) begin
-                shr_jam56 = 56'd0;
-                if (in != 56'd0)
-                    shr_jam56[0] = 1'b1;
-            end
-            else begin
-                tmp    = in >> shamt;
-                sticky = 1'b0;
-                for (i = 0; i < shamt; i = i + 1) begin
-                    sticky = sticky | in[i];
-                end
-                tmp[0] = tmp[0] | sticky;
-                shr_jam56 = tmp;
-            end
+
+		function automatic logic [55:0] shr_jam56 (
+    	input logic [55:0] in,       // 56-bit, unsigned significand + GRS
+    	input logic [10:0] shamt     // 11-bit, unsigned shift amount
+		);
+    	logic [55:0] shifted;        // 56-bit, shifted result
+    	logic        sticky;         // 1-bit, OR of discarded bits
+    	integer      i;
+
+    begin
+        shifted = 56'd0;
+        sticky  = 1'b0;
+
+        if (shamt == 0) begin
+            shr_jam56 = in;
         end
-    endfunction
+        else if (shamt >= 56) begin
+            shr_jam56 = {55'd0, (|in)};
+        end
+        else begin
+            shifted = in >> shamt;
+
+            // Fixed loop bound: synthesis-friendly
+            for (i = 0; i < 56; i = i + 1) begin
+                if (i < shamt)
+                    sticky = sticky | in[i];
+            end
+
+            shifted[0] = shifted[0] | sticky;
+            shr_jam56  = shifted;
+        end
+    end
+		endfunction
+
 
     // Leading-zero count for 56-bit vector
     function automatic logic [5:0] lzc56 (
