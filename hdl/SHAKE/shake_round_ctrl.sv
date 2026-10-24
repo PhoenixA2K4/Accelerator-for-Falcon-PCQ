@@ -57,8 +57,8 @@ module shake_round_ctrl(
 			d1x2s_en 	= 1;
 			interrupt = 1;
 		end else begin
-			d1x2s_en 	<= 0;
-			interrupt <= 0;
+			d1x2s_en 	= 0;
+			interrupt = 0;
 		end
 	end
 

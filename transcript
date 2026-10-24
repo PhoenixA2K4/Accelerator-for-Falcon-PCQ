@@ -33,12 +33,88 @@
 # Loading work.shake_round_ctrl(fast)
 add wave -position insertpoint sim:/tb_shake_256/dut/*
 run -all
-# 
-# ================ INIT TESTBENCH SHAKE-256 ================
-# 
 # ** Warning: (vsim-8315) D:/SV_CODE/FN_DSA/path/../hdl/SHAKE/D1X2S.sv(40): No condition is true in the unique/priority if/case statement.
 # 
-# [INFO] Start testcase: TC1: Seed All-Zeros
+# ================================================================
+# [INFO] Chạy Testcase: TC1: Seed All-Zeros
 #   Input Seed (384-bit): 0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-# [ERROR] TIMEOUT! Module not return done flag after 1000 clock.
-# Break in Task run_testcase at D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv line 91
+# [SUCCESS] Hoàn thành sau 96 chu kỳ clock.
+# ------------------- Squeezed 1088-bit Output -------------------
+#   Hex Output : 0xeda313c95591a023a5b37f361c07a5753a92d3d0427459f34c7895d727d62816b3aa2224eb9d823127d4f9f8a30fd7a1a02c6483d9c0f1fd41957b9ae4dfc63a3191da3442686282b3d5160f25cf162a517fd2131f83fbf2698a58f9c46afc5df74a686f5cd121749cd41fdac5ef39ec074e8a53f1d0b42314deb6ffcc684b7c28e19cb6c0b2decd
+#   Lane [00] (bits 1087:1024) = 0xeda313c95591a023
+#   Lane [01] (bits 1023: 960) = 0xa5b37f361c07a575
+#   Lane [02] (bits  959: 896) = 0x3a92d3d0427459f3
+#   Lane [03] (bits  895: 832) = 0x4c7895d727d62816
+#   Lane [04] (bits  831: 768) = 0xb3aa2224eb9d8231
+#   Lane [05] (bits  767: 704) = 0x27d4f9f8a30fd7a1
+#   Lane [06] (bits  703: 640) = 0xa02c6483d9c0f1fd
+#   Lane [07] (bits  639: 576) = 0x41957b9ae4dfc63a
+#   Lane [08] (bits  575: 512) = 0x3191da3442686282
+#   Lane [09] (bits  511: 448) = 0xb3d5160f25cf162a
+#   Lane [10] (bits  447: 384) = 0x517fd2131f83fbf2
+#   Lane [11] (bits  383: 320) = 0x698a58f9c46afc5d
+#   Lane [12] (bits  319: 256) = 0xf74a686f5cd12174
+#   Lane [13] (bits  255: 192) = 0x9cd41fdac5ef39ec
+#   Lane [14] (bits  191: 128) = 0x074e8a53f1d0b423
+#   Lane [15] (bits  127:  64) = 0x14deb6ffcc684b7c
+#   Lane [16] (bits   63:   0) = 0x28e19cb6c0b2decd
+# ----------------------------------------------------------------
+# 
+# ===> KẾT QUẢ: [PASS] Trùng khớp 100% với vector chuẩn NIST!
+# 
+# ================================================================
+# [INFO] Chạy Testcase: TC2: Sequential Pattern Bytes
+#   Input Seed (384-bit): 0x0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f30
+# [SUCCESS] Hoàn thành sau 96 chu kỳ clock.
+# ------------------- Squeezed 1088-bit Output -------------------
+#   Hex Output : 0xcd543d1efaa1f443977e8a52a7ce04cba27c1f7e92119db604753149d7da5145a3b858337eebaf3880a43aecd4f731b34b57c8afa115ee7853bc2383789b1a019d3ea987d0d7c15a123132d00acec9bb756b11e9fc2b5a6e5d5e89898e5f340bec8529d2608c49388d55bc4c28f1a4cf630bdeb991db97ad620371c7f15af344d22f42baf058f455
+#   Lane [00] (bits 1087:1024) = 0xcd543d1efaa1f443
+#   Lane [01] (bits 1023: 960) = 0x977e8a52a7ce04cb
+#   Lane [02] (bits  959: 896) = 0xa27c1f7e92119db6
+#   Lane [03] (bits  895: 832) = 0x04753149d7da5145
+#   Lane [04] (bits  831: 768) = 0xa3b858337eebaf38
+#   Lane [05] (bits  767: 704) = 0x80a43aecd4f731b3
+#   Lane [06] (bits  703: 640) = 0x4b57c8afa115ee78
+#   Lane [07] (bits  639: 576) = 0x53bc2383789b1a01
+#   Lane [08] (bits  575: 512) = 0x9d3ea987d0d7c15a
+#   Lane [09] (bits  511: 448) = 0x123132d00acec9bb
+#   Lane [10] (bits  447: 384) = 0x756b11e9fc2b5a6e
+#   Lane [11] (bits  383: 320) = 0x5d5e89898e5f340b
+#   Lane [12] (bits  319: 256) = 0xec8529d2608c4938
+#   Lane [13] (bits  255: 192) = 0x8d55bc4c28f1a4cf
+#   Lane [14] (bits  191: 128) = 0x630bdeb991db97ad
+#   Lane [15] (bits  127:  64) = 0x620371c7f15af344
+#   Lane [16] (bits   63:   0) = 0xd22f42baf058f455
+# ----------------------------------------------------------------
+# 
+# ================================================================
+# [INFO] Chạy Testcase: TC3: Pseudo-random Entropy Seed
+#   Input Seed (384-bit): 0xa5a5a5a55a5a5a5a0123456789abcdeffedcba9876543210deadbeefcafebabe112233445566778899aabbccddeeff00
+# [SUCCESS] Hoàn thành sau 96 chu kỳ clock.
+# ------------------- Squeezed 1088-bit Output -------------------
+#   Hex Output : 0x49fe19dbb6d5b30024ae91d146b0c4101aa1317ddbca52a88fabea600f561bee9184f8e1e5acadadc78a1d1c62461e1b7fd04b55a6c288029e721acf5abd785b8aee61fbf9a13a5013ec443121e3ad5484ce73a041cb3bfc974456ed1daf875a83113b6b36f5303e2d71aa081976de59f6705aff3513fa3092be518b4d6a6f423fe53ed861b61020
+#   Lane [00] (bits 1087:1024) = 0x49fe19dbb6d5b300
+#   Lane [01] (bits 1023: 960) = 0x24ae91d146b0c410
+#   Lane [02] (bits  959: 896) = 0x1aa1317ddbca52a8
+#   Lane [03] (bits  895: 832) = 0x8fabea600f561bee
+#   Lane [04] (bits  831: 768) = 0x9184f8e1e5acadad
+#   Lane [05] (bits  767: 704) = 0xc78a1d1c62461e1b
+#   Lane [06] (bits  703: 640) = 0x7fd04b55a6c28802
+#   Lane [07] (bits  639: 576) = 0x9e721acf5abd785b
+#   Lane [08] (bits  575: 512) = 0x8aee61fbf9a13a50
+#   Lane [09] (bits  511: 448) = 0x13ec443121e3ad54
+#   Lane [10] (bits  447: 384) = 0x84ce73a041cb3bfc
+#   Lane [11] (bits  383: 320) = 0x974456ed1daf875a
+#   Lane [12] (bits  319: 256) = 0x83113b6b36f5303e
+#   Lane [13] (bits  255: 192) = 0x2d71aa081976de59
+#   Lane [14] (bits  191: 128) = 0xf6705aff3513fa30
+#   Lane [15] (bits  127:  64) = 0x92be518b4d6a6f42
+#   Lane [16] (bits   63:   0) = 0x3fe53ed861b61020
+# ----------------------------------------------------------------
+# 
+# ================ HOÀN TẤT TẤT CẢ TESTCASE ================
+# 
+# ** Note: $finish    : D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv(150)
+#    Time: 3355 ns  Iteration: 1  Instance: /tb_shake_256
+# 1
+# Break in Module tb_shake_256 at D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv line 150

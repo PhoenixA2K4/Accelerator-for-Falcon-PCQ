@@ -23,7 +23,7 @@ module shake_256 (
 	input 										rst_n,
 	input 										start,
 	input 				[383 	: 0] 	seed,
-	output	logic	[1599 : 0]	hash,
+	output	logic	[1087 : 0]	hash,
 	output 	logic							done
 );
 
@@ -31,6 +31,7 @@ module shake_256 (
 	logic [1599 : 0] S_in;
 	logic [1599 : 0] data_d1x2s;
 	logic [1599 : 0] data_loop;
+	logic [1599 : 0] data_out_raw;
 
 	logic [4 : 0] summand;
 	logic [4 : 0] idx_o;
@@ -63,6 +64,7 @@ module shake_256 (
 		.idx_i    	(idx_i),
 		.S_in     	(S_in),
 		.S_out    	(data_d1x2s),
+		.idx_o    	(idx_o),
 		.en_loop  	(en_loop),
 		.flag_ctrl	(flag_ctrl)
 	);
@@ -73,7 +75,7 @@ module shake_256 (
 		.data_i			(data_d1x2s),
 		.sel   			(d1x2s_en),
 		.A     			(data_loop),
-		.B					(hash)
+		.B					(data_out_raw)
 	);
 
 	shake_round_ctrl Controller (
@@ -89,5 +91,11 @@ module shake_256 (
 		.interrupt	(interrupt),
 		.done				(done)
 	);
+
+	always_comb begin
+		for (int i = 0; i < 136; i++) begin
+			hash[1087 - i*8 -: 8] = data_out_raw[i*8 +: 8];
+		end
+	end
 
 endmodule

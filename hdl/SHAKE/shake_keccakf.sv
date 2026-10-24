@@ -30,6 +30,7 @@
  	input 				[4 : 0]		 	idx_i,	
  	input   			[1599 : 0] 	S_in,
  	output  logic	[1599 : 0] 	S_out,
+ 	output	logic [4 : 0]			idx_o,
  	output 	logic							en_loop,
  	output 	logic							flag_ctrl
  );
@@ -41,18 +42,17 @@
 	d3_arr  data_stg3, data_stg4;
 
 	logic 	[63 : 0] 	RC_data;
-	logic 	[4 : 0]		idx_f1;
 	logic 	[4 : 0] 	idx_f2;
 	logic 	[4 : 0] 	idx_f3;
 	logic 	[4 : 0] 	idx_f4;
-
+	logic 	[4 : 0]		idx_f4_tmp;
 
 
  	shake_theta1 STG_1 (
  		.clk    (clk),
  		.rst_n  (rst_n),
  		.en_f1  (en_kf),
- 		.idx_i 	(idx_f1),
+ 		.idx_i 	(idx_i),
  		.S_in   (S_in),
  		.data_o (data_stg2),
  		.S_out  (str_stg),
@@ -76,7 +76,7 @@
   	.clk    (clk),
   	.rst_n  (rst_n),
   	.en_f3  (en_f3),
-  	.idx_i 	(idx_f3),
+  	.idx_i 	(idx_f4_tmp),
   	.idx_o 	(idx_f4),
   	.data_i (data_stg3),
   	.data_o (data_stg4),
@@ -101,8 +101,10 @@
  	);
 
  	shake_pointer RC_Pointer (
- 		.a			(idx_i),
+ 		.a			(idx_f3),
  		.b			(summand),
- 		.y			(idx_f1)
+ 		.y			(idx_f4_tmp)
  	);
+
+ 	assign idx_o = idx_f4;
 endmodule
