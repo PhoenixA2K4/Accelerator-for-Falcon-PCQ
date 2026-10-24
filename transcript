@@ -8,79 +8,37 @@
 # //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
-# vsim -voptargs=+acc work.tb_falcon_mergefft 
+# vsim -voptargs=+acc work.tb_shake_256 
 # ** Note: (vsim-3812) Design is being optimized...
 # 
 # Loading sv_std.std
-# Loading work.tb_falcon_mergefft_sv_unit(fast)
-# Loading work.tb_falcon_mergefft(fast)
-# Loading work.falcon_mergefft_sv_unit(fast)
-# Loading work.falcon_mergefft(fast)
-# Loading work.fpu_mul(fast)
-# Loading work.fpu_addsub(fast)
-# ** Warning: (vsim-3015) D:/SV_CODE/FN_DSA/hdl/falcon_mergefft.sv(110): [PCDPC] - Port size (1 or 1) does not match connection size (32) for port 'sub'. The port definition is at: D:/SV_CODE/FN_DSA/hdl/fpu_addsub.sv(26).
-# 
-#         Region: /tb_falcon_mergefft/dut/fpu_sub
-# ** Warning: (vsim-3015) D:/SV_CODE/FN_DSA/hdl/falcon_mergefft.sv(121): [PCDPC] - Port size (1 or 1) does not match connection size (32) for port 'sub'. The port definition is at: D:/SV_CODE/FN_DSA/hdl/fpu_addsub.sv(26).
-# 
-#         Region: /tb_falcon_mergefft/dut/fpu_add_1
-# ** Warning: (vsim-3015) D:/SV_CODE/FN_DSA/hdl/falcon_mergefft.sv(132): [PCDPC] - Port size (1 or 1) does not match connection size (32) for port 'sub'. The port definition is at: D:/SV_CODE/FN_DSA/hdl/fpu_addsub.sv(26).
-# 
-#         Region: /tb_falcon_mergefft/dut/fpu_add_2
-# ** Warning: (vsim-3015) D:/SV_CODE/FN_DSA/hdl/falcon_mergefft.sv(143): [PCDPC] - Port size (1 or 1) does not match connection size (32) for port 'sub'. The port definition is at: D:/SV_CODE/FN_DSA/hdl/fpu_addsub.sv(26).
-# 
-#         Region: /tb_falcon_mergefft/dut/fpu_add_3
-add wave -position insertpoint sim:/tb_falcon_mergefft/dut/*
+# Loading work.tb_shake_256(fast)
+# Loading work.shake_256(fast)
+# Loading work.shake_padding(fast)
+# Loading work.M2X1S(fast)
+# Loading work.SHAKE_pkg(fast)
+# Loading work.shake_keccakf_sv_unit(fast)
+# Loading work.shake_keccakf(fast)
+# Loading work.shake_theta1_sv_unit(fast)
+# Loading work.shake_theta1(fast)
+# Loading work.shake_theta2_rho_pi_sv_unit(fast)
+# Loading work.shake_theta2_rho_pi(fast)
+# Loading work.shake_chi_sv_unit(fast)
+# Loading work.shake_chi(fast)
+# Loading work.shake_iota_sv_unit(fast)
+# Loading work.shake_iota(fast)
+# Loading work.shake_RC(fast)
+# Loading work.shake_pointer(fast)
+# Loading work.D1X2S(fast)
+# Loading work.shake_round_ctrl(fast)
+add wave -position insertpoint sim:/tb_shake_256/dut/*
 run -all
-# -----------------------------------------------------------------
-# Kiem tra: Test 1: Khoi phuc u = 3 + 4i (Kiem tra nguoc splitfft) (Do tre pipeline: 13 chu ky)
-#   Dau vao f0     : 2.000000 + 3.000000i
-#   Dau vao f1     : 1.414214 + 0.000000i
-#   He so xoay zeta: 0.707107 + 0.707107i
-#   Ket qua ky vong (Expected) : 3.000000 + 4.000000i
-#   Ket qua thuc te (Actual)   : 3.000000 + 4.000000i
-# ===> KET QUA: [PASS]
-# -----------------------------------------------------------------
-# -----------------------------------------------------------------
-# Kiem tra: Test 2: Khoi phuc v = 1 + 2i voi -zeta (Do tre pipeline: 13 chu ky)
-#   Dau vao f0     : 2.000000 + 3.000000i
-#   Dau vao f1     : 1.414214 + 0.000000i
-#   He so xoay zeta: -0.707107 + -0.707107i
-#   Ket qua ky vong (Expected) : 1.000000 + 2.000000i
-#   Ket qua thuc te (Actual)   : 1.000000 + 2.000000i
-# ===> KET QUA: [PASS]
-# -----------------------------------------------------------------
-# -----------------------------------------------------------------
-# Kiem tra: Test 3: Da thuc tong quat tai zeta_0 (Do tre pipeline: 13 chu ky)
-#   Dau vao f0     : 1.000000 + 3.000000i
-#   Dau vao f1     : 2.000000 + 4.000000i
-#   He so xoay zeta: 0.707107 + 0.707107i
-#   Ket qua ky vong (Expected) : -0.414214 + 7.242641i
-#   Ket qua thuc te (Actual)   : -0.414214 + 7.242641i
-# ===> KET QUA: [PASS]
-# -----------------------------------------------------------------
-# -----------------------------------------------------------------
-# Kiem tra: Test 4: Da thuc tong quat tai -zeta_0 (Do tre pipeline: 13 chu ky)
-#   Dau vao f0     : 1.000000 + 3.000000i
-#   Dau vao f1     : 2.000000 + 4.000000i
-#   He so xoay zeta: -0.707107 + -0.707107i
-#   Ket qua ky vong (Expected) : 2.414214 + -1.242641i
-#   Ket qua thuc te (Actual)   : 2.414214 + -1.242641i
-# ===> KET QUA: [PASS]
-# -----------------------------------------------------------------
-# -----------------------------------------------------------------
-# Kiem tra: Test 5: f1 = 0 (f phai bang f0) (Do tre pipeline: 13 chu ky)
-#   Dau vao f0     : 7.500000 + -4.250000i
-#   Dau vao f1     : 0.000000 + 0.000000i
-#   He so xoay zeta: 0.500000 + 0.866025i
-#   Ket qua ky vong (Expected) : 7.500000 + -4.250000i
-#   Ket qua thuc te (Actual)   : 7.500000 + -4.250000i
-# ===> KET QUA: [PASS]
-# -----------------------------------------------------------------
 # 
-# >>> HOAN TAT TAT CA CAC TEST CASE CHO MERGEFFT <<<
+# ================ INIT TESTBENCH SHAKE-256 ================
 # 
-# ** Note: $finish    : D:/SV_CODE/FN_DSA/tb/tb_falcon_mergefft.sv(205)
-#    Time: 925 ns  Iteration: 1  Instance: /tb_falcon_mergefft
-# 1
-# Break in Module tb_falcon_mergefft at D:/SV_CODE/FN_DSA/tb/tb_falcon_mergefft.sv line 205
+# ** Warning: (vsim-8315) D:/SV_CODE/FN_DSA/path/../hdl/SHAKE/D1X2S.sv(40): No condition is true in the unique/priority if/case statement.
+# 
+# [INFO] Start testcase: TC1: Seed All-Zeros
+#   Input Seed (384-bit): 0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# [ERROR] TIMEOUT! Module not return done flag after 1000 clock.
+# Break in Task run_testcase at D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv line 91

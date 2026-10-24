@@ -23,13 +23,14 @@ module shake_256 (
 	input 										rst_n,
 	input 										start,
 	input 				[383 	: 0] 	seed,
-	output	logic	[1087 : 0]	hash,
+	output	logic	[1599 : 0]	hash,
 	output 	logic							done
 );
 
 	logic [1599 : 0] new_seed;
 	logic [1599 : 0] S_in;
 	logic [1599 : 0] data_d1x2s;
+	logic [1599 : 0] data_loop;
 
 	logic [4 : 0] summand;
 	logic [4 : 0] idx_o;
@@ -72,7 +73,7 @@ module shake_256 (
 		.data_i			(data_d1x2s),
 		.sel   			(d1x2s_en),
 		.A     			(data_loop),
-		.B     			(hash)
+		.B					(hash)
 	);
 
 	shake_round_ctrl Controller (

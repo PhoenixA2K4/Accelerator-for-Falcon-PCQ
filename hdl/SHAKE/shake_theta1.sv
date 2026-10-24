@@ -17,7 +17,7 @@
   History:
 
  ******************************************************************************/
-`include "SHAKE_pkg.sv"
+// `include "SHAKE_pkg.sv"
 import SHAKE_pkg :: * ;
 
 module shake_theta1(

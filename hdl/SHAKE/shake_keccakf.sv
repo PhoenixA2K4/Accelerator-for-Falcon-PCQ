@@ -18,7 +18,7 @@
 
  ******************************************************************************/
 
- `include "SHAKE_pkg.sv"
+ // `include "SHAKE_pkg.sv"
  import SHAKE_pkg ::*;
 
  module shake_keccakf(
@@ -50,7 +50,7 @@
 
  	shake_theta1 STG_1 (
  		.clk    (clk),
- 		.rst    (rst_n),
+ 		.rst_n  (rst_n),
  		.en_f1  (en_kf),
  		.idx_i 	(idx_f1),
  		.S_in   (S_in),
@@ -62,7 +62,7 @@
 
  	shake_theta2_rho_pi STG_2 (
   	.clk    (clk),
-  	.rst    (rst_n),
+  	.rst_n  (rst_n),
   	.en_f2  (en_f2),
   	.idx_i 	(idx_f2),
   	.S_in   (str_stg),
@@ -74,7 +74,7 @@
 
  	shake_chi STG_3 (
   	.clk    (clk),
-  	.rst    (rst_n),
+  	.rst_n  (rst_n),
   	.en_f3  (en_f3),
   	.idx_i 	(idx_f3),
   	.idx_o 	(idx_f4),
@@ -85,7 +85,7 @@
 
  	shake_iota STG_4 (
   	.clk        (clk),
-  	.rst        (rst_n),
+  	.rst_n      (rst_n),
   	.en_f4      (en_f4),
   	.interrupt	(interrupt),
   	.RC_data    (RC_data),

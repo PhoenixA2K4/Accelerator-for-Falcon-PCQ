@@ -17,7 +17,7 @@
   History:
 
  ******************************************************************************/
-`include "SHAKE_pkg.sv"
+// `include "SHAKE_pkg.sv"
 import SHAKE_pkg::*;
 
 module shake_iota (
@@ -27,8 +27,8 @@ module shake_iota (
 	input 											interrupt,
 	input   logic		[63 : 0]  	RC_data,
 	input   d3_arr          		data_i,
-	output 											en_loop,
-	output 											flag_ctrl,
+	output 	logic								en_loop,
+	output 	logic								flag_ctrl,
 	output  logic 	[1599 : 0] 	data_o
 );
 	d3_arr Iota;

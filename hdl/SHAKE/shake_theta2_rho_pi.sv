@@ -18,7 +18,7 @@
 
  ******************************************************************************/
 
- `include "SHAKE_pkg.sv"
+ // `include "SHAKE_pkg.sv"
 import SHAKE_pkg :: * ;
 
 module shake_theta2_rho_pi (
@@ -72,7 +72,7 @@ module shake_theta2_rho_pi (
     generate
      	for(a = 0; a < 5; a++) begin : gen_Rho
        	for(b = 0; b < 5; b++) begin : gen_Rho_inner
-         	assign Rho[a][b] = rotl(Ap[a][b], r[a][b]);
+         	assign Rho[a][b] = rotl(Ap[a][b], R[a][b]);
        	end
      	end
     endgenerate

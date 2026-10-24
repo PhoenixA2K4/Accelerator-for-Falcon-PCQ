@@ -43,7 +43,7 @@
 
     // Transfer string data into block array
     function automatic d3_arr converse_blk;
-    	input kecf S;
+    	input kecf_t S;
     begin
     	for(int i = 0; i < 5; i++) begin
       	for(int j = 0; j < 5; j++) begin
