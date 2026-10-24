@@ -32,7 +32,7 @@
   * 
   *property random_ber;
   *	@(posedge clk)
-  * 	unif_req_ber |=> (unif_base == random_base)
+  * 	unif_req_ber |=> (unif_ber == random_ber);
   * endproperty
   * 
   * */
@@ -46,8 +46,8 @@ module falcon_samplerZ (
 	input  																													start,
 	input  							[`FALCON_UNIFORM_BITS_BASE_SAMPLER - 1 : 0] unif_base,			// Uniform bits to base_sampler
  	input  							[`FALCON_UNIFORM_BITS_SAMPLERZ -1 : 0]			unif_samp,			// Uniform bits to samplerZ
- 	input  logic 				[`FALCON_UNIFORM_BITS_BER_EXP - 1 : 0] 			unif_ber,				// Uniform bits to ber_exp
- 	input  logic 				[`FPU_STAND - 1 : 0] 												o_dot,        	// σ′(floating point unit)
+ 	input  			 				[`FALCON_UNIFORM_BITS_BER_EXP - 1 : 0] 			unif_ber,				// Uniform bits to ber_exp
+ 	input  			 				[`FPU_STAND - 1 : 0] 												o_dot,        	// σ′(floating point unit)
  	input          			[`FPU_STAND - 1 : 0] 												mu,							// µ (floating point unit)
  	output logic																										unif_req,				// Request to PRNG - SHAKE
  	output logic 																										unif_req_ber,

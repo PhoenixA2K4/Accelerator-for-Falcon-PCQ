@@ -429,16 +429,23 @@ module fpu_divider (
                         state <= DIVIDE;
                     end
                 end
+                // DIVIDE: begin
+                //     if (special_q) begin
+                //         state <= FINISH;
+                //     end else begin
+                //         quotient_q  <= {quotient_q[53:0], qbit0, qbit1};
+                //         remainder_q <= rem2;
+                //         cycles_left <= cycles_left - 6'd1;
+                //         if (cycles_left == 5'd1)
+                //             state <= FINISH;
+                //     end
+                // end
                 DIVIDE: begin
-                    if (special_q) begin
-                        state <= FINISH;
-                    end else begin
-                        quotient_q  <= {quotient_q[53:0], qbit0, qbit1};
-                        remainder_q <= rem2;
-                        cycles_left <= cycles_left - 6'd1;
-                        if (cycles_left == 5'd1)
-                            state <= FINISH;
-                    end
+                 	quotient_q  <= {quotient_q[53:0], qbit0, qbit1};
+                 	remainder_q <= rem2;
+                 	cycles_left <= cycles_left - 5'd1;
+                 	if (cycles_left == 5'd1)
+                   	state <= FINISH;
                 end
                 FINISH: begin : pack_stage
                     logic [52:0] mant;
