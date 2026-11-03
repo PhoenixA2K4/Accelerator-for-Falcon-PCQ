@@ -44,6 +44,7 @@ module falcon_samplerZ (
 	input																														clk,
 	input 																													rst_n,
 	input  																													start,
+	input								[1 : 0]																			prng_valid,			// valid_o [2 : 1] from falcon_buffer
 	input  							[`FALCON_UNIFORM_BITS_BASE_SAMPLER - 1 : 0] unif_base,			// Uniform bits to base_sampler
  	input  							[`FALCON_UNIFORM_BITS_SAMPLERZ -1 : 0]			unif_samp,			// Uniform bits to samplerZ
  	input  			 				[`FALCON_UNIFORM_BITS_BER_EXP - 1 : 0] 			unif_ber,				// Uniform bits to ber_exp
@@ -110,6 +111,7 @@ module falcon_samplerZ (
  		.clk        	(clk),
  		.rst_n      	(rst_n),
  		.start      	(en_ber),
+ 		.prng_valid  	(prng_valid[1]),
  		.x          	(x),
  		.ccs         	(ccs),
  		.uniform_bits	(unif_ber),
@@ -123,6 +125,7 @@ module falcon_samplerZ (
 		.clk 					(clk),
 		.rst_n 				(rst_n),
 		.start     		(start),
+		.prng_valid		(prng_valid[0]),
 		.check_bit 		(check_bit),
 		.ber_valid 		(valid_ber),
 		.genx_valid 	(valid_x2),

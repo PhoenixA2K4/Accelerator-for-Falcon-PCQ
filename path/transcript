@@ -33,7 +33,7 @@
 # Loading work.shake_round_ctrl(fast)
 add wave -position insertpoint sim:/tb_shake_256/dut/*
 run -all
-# ** Warning: (vsim-8315) D:/SV_CODE/FN_DSA/path/../hdl/SHAKE/D1X2S.sv(40): No condition is true in the unique/priority if/case statement.
+# ** Warning: (vsim-8315) ../hdl/SHAKE/D1X2S.sv(40): No condition is true in the unique/priority if/case statement.
 # 
 # ================================================================
 # [INFO] Chạy Testcase: TC1: Seed All-Zeros
@@ -114,7 +114,7 @@ run -all
 # 
 # ================ HOÀN TẤT TẤT CẢ TESTCASE ================
 # 
-# ** Note: $finish    : D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv(150)
+# ** Note: $finish    : ../tb/test_shake/tb_shake_256.sv(150)
 #    Time: 3355 ns  Iteration: 1  Instance: /tb_shake_256
 # 1
-# Break in Module tb_shake_256 at D:/SV_CODE/FN_DSA/path/../tb/test_shake/tb_shake_256.sv line 150
+# Break in Module tb_shake_256 at ../tb/test_shake/tb_shake_256.sv line 150

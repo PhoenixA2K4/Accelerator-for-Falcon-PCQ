@@ -31,3 +31,6 @@
 ../hdl/falcon/falcon_samplerZ.sv
 ../hdl/falcon/falcon_mergefft.sv
 ../hdl/falcon/falcon_splitfft.sv
+
+../hdl/PRNG/falcon_buffer.sv
+../hdl/PRNG/falcon_PRNG.sv

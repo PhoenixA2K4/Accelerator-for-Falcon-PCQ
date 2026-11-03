@@ -21,6 +21,7 @@ module falcon_ber_exp (
 	input   																						 clk,
   input   																						 rst_n,
   input   																						 start,
+  input 																							 prng_valid,			// '1' when prng busy
   input   logic [`FALCON_X - 1 : 0] 									 x,       				// Q8.56
   input   logic [`FALCON_CCS - 1 : 0] 								 ccs,   					// Q1.63
   input   logic [`FALCON_UNIFORM_BITS_BER_EXP - 1 : 0] uniform_bits,
@@ -120,11 +121,12 @@ module falcon_ber_exp (
     	end
 
     	CHECK_ST : begin
-      	if((uniform_bits == ((z >> byte_shift) & 8'hFF)) && (byte_shift != 0)) begin
-        	next_state = RAND_REQ_ST;
-      	end else begin
-         	next_state = IDLE_ST;
-       	end
+    		if(prng_valid) begin
+    			if((uniform_bits == ((z >> byte_shift) & 8'hFF)) && (byte_shift != 0))
+        		next_state = RAND_REQ_ST;
+      		else
+         		next_state = IDLE_ST;
+    		end
     	end
 
      	default : begin
@@ -171,19 +173,21 @@ module falcon_ber_exp (
      	end
 
       CHECK_ST : begin
-      	if (uniform_bits < ((z >> byte_shift) & 8'hFF)) begin
-       		check_bit = 1'b1;
-       		done      = 1'b1;
-      	end
-      	else if (uniform_bits > ((z >> byte_shift) & 8'hFF)) begin
-       		check_bit = 1'b0;
-       		done      = 1'b1;
-      	end
-      	else begin
-       		if(byte_shift == 0) begin
-          	check_bit = 1'b0;
-          	done      = 1'b1;
-       		end
+      	if(prng_valid) begin
+      		if (uniform_bits < ((z >> byte_shift) & 8'hFF)) begin
+       			check_bit = 1'b1;
+       			done      = 1'b1;
+      		end
+      		else if (uniform_bits > ((z >> byte_shift) & 8'hFF)) begin
+       			check_bit = 1'b0;
+       			done      = 1'b1;
+      		end
+      		else begin
+       			if(byte_shift == 0) begin
+          		check_bit = 1'b0;
+          		done      = 1'b1;
+       			end
+      		end
       	end
       end
 
@@ -261,9 +265,10 @@ module falcon_ber_exp (
        		end
 
        		CHECK_ST : begin
-         		if ((uniform_bits == ((z >> byte_shift) & 8'hFF)) && (byte_shift != 0)) begin
-          	  byte_shift <= byte_shift - 6'd8;
-         		end
+       			if(prng_valid) begin
+       				if ((uniform_bits == ((z >> byte_shift) & 8'hFF)) && (byte_shift != 0))
+          	  	byte_shift <= byte_shift - 6'd8;
+       			end
        		end
 
      			default : begin

@@ -23,6 +23,7 @@
  	input 																	clk,
  	input 																	rst_n,
  	input 																	start,
+ 	input																		prng_valid,
  	input 																	check_bit,
  	input 																	ber_valid,
  	output logic														genx_valid,
@@ -52,9 +53,11 @@
  		genx_valid	<= 1'b0;
  	end
  	else begin
- 		valid_dl[0] <= unif_req_2;
- 		valid_dl[1] <= valid_dl[0];
- 		genx_valid  <= valid_dl[1];
+ 		if(prng_valid) begin
+ 			valid_dl[0] <= 1'b1;
+ 			valid_dl[1] <= valid_dl[0];
+ 			genx_valid  <= valid_dl[1];
+ 		end
  	end
  end
 

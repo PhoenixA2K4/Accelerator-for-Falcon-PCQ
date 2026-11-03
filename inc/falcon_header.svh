@@ -60,6 +60,9 @@
 `define FALCON_UNIFORM_BITS_SAMPLERZ    8
 `define FALCON_Z                        16
 
+//Compress
+`define FALCON_SLEN		5000
+
 
 
 function automatic logic [63:0] converter_fpu_q1_63(input logic [63:0] fp_in);
